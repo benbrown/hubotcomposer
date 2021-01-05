@@ -1,0 +1,6 @@
+[import](common.lg)
+
+# SendActivity_vZg4nI()
+[HeroCard
+    image = ${ dialog.image }
+]
