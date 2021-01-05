@@ -178,7 +178,7 @@
     "intents": [
       {
         "intent": "plusplus",
-        "pattern": "(?i)((\\b)(?:\\<at\\>)?(?<item>\\w+)(?:\\<\\/at\\>)?\\+\\+)+"
+        "pattern": "(?i)((\\b)(?<item>\\w+)\\+\\+)+"
       },
       {
         "intent": "minusminus",

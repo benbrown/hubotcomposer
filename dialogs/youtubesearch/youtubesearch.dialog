@@ -22,7 +22,7 @@
             "id": "xbO7ha"
           },
           "property": "dialog.YOUTUBE_API_KEY",
-          "value": "=\"YOUTUBE_API_KEY\""
+          "value": "=settings.YOUTUBE_API_KEY"
         },
         {
           "$kind": "Microsoft.SetProperty",
