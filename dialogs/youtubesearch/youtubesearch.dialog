@@ -1,0 +1,136 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "FQrcfE",
+    "name": "youtubesearch",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "1UDlke",
+        "name": "youtubesearch"
+      },
+      "intent": "youtubesearch",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "xbO7ha"
+          },
+          "property": "dialog.YOUTUBE_API_KEY",
+          "value": "=settings.YOUTUBE_API_KEY"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "5VE0Q0"
+          },
+          "value": "=turn.recognized.entities.query[0]",
+          "property": "dialog.query"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "AQq3Ra"
+          },
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "F8v9Ho"
+              },
+              "activity": "${SendActivity_F8v9Ho()}"
+            },
+            {
+              "$kind": "Microsoft.EndDialog",
+              "$designer": {
+                "id": "g47v1B"
+              }
+            }
+          ],
+          "condition": "=length(trim(dialog.YOUTUBE_API_KEY)) == 0"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "MUK2T5"
+          },
+          "method": "GET",
+          "url": "https://youtube.googleapis.com/youtube/v3/search?part=snippet&eventType=completed&maxResults=1&type=video&key=${uriComponent(dialog.YOUTUBE_API_KEY)}&q=${uriComponent(dialog.query)}",
+          "headers": {},
+          "resultProperty": "dialog.youtubeResult",
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "rS4RaP"
+          },
+          "condition": "=dialog.youtubeResult.statusCode != 200",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "4SdhnD"
+              },
+              "activity": "${SendActivity_4SdhnD()}"
+            },
+            {
+              "$kind": "Microsoft.EndDialog",
+              "$designer": {
+                "id": "HRvK2k"
+              }
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "jKzkG7"
+          },
+          "condition": "=count(dialog.youtubeResult.content.items) < 1",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "zl1wZq"
+              },
+              "activity": "${SendActivity_zl1wZq()}"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "x5inMi"
+          },
+          "property": "dialog.youtubeItem",
+          "value": "=dialog.youtubeResult.content.items[0]"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "clmhJq"
+          },
+          "activity": "${SendActivity_clmhJq()}"
+        }
+      ]
+    }
+  ],
+  "generator": "youtubesearch.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "youtubesearch",
+        "pattern": "(?:youtube|yt)\\s(?:me)?\\s(?<query>.*)"
+      }
+    ]
+  },
+  "id": "youtubesearch"
+}

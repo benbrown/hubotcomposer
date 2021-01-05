@@ -1,0 +1,148 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "BBlICi",
+    "name": "pollenReport",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "GbCyOy",
+        "name": "getPollenByZip"
+      },
+      "intent": "getPollenByZip",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "PTs0sd"
+          },
+          "activity": "${SendActivity_PTs0sd()}"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "1nSxVV"
+          },
+          "property": "$zipcode",
+          "value": "=@zipcode"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "PCwxxD"
+          },
+          "method": "GET",
+          "url": "https://www.pollen.com/api/forecast/current/pollen/${ $zipcode }",
+          "resultProperty": "dialog.res",
+          "headers": {
+            "referer": "https://www.pollen.com/forecast/current/pollen/${ $zipcode }",
+            "User-Agent": "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:75.0) Gecko/20100101 Firefox/75.0"
+          }
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "rR7FHr"
+          },
+          "condition": "=(dialog.res.statusCode==200)",
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "BobMZx"
+              },
+              "activity": "${SendActivity_BobMZx()}"
+            }
+          ],
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "e8Le5Z"
+              },
+              "property": "$forecast",
+              "value": "=dialog.res.content"
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "clqsTG"
+              },
+              "condition": "=($forecast.Location.DisplayLocation && count($forecast.Location.periods) > 0)",
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "0FThO9"
+                  },
+                  "activity": "${SendActivity_0FThO9()}"
+                }
+              ],
+              "actions": [
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "0PfzdP"
+                  },
+                  "property": "$index",
+                  "value": "=$forecast.Location.periods[1].Index"
+                },
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "QMcWLH"
+                  },
+                  "property": "$triggers",
+                  "value": "=[]"
+                },
+                {
+                  "$kind": "Microsoft.Foreach",
+                  "$designer": {
+                    "id": "a7Xryc"
+                  },
+                  "index": "dialog.foreach.index",
+                  "value": "dialog.foreach.value",
+                  "itemsProperty": "$forecast.Location.periods[1].Triggers",
+                  "actions": [
+                    {
+                      "$kind": "Microsoft.EditArray",
+                      "$designer": {
+                        "id": "o0Qza2"
+                      },
+                      "changeType": "push",
+                      "itemsProperty": "$triggers",
+                      "value": "=dialog.foreach.value.Name"
+                    }
+                  ]
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "AdzUAs"
+                  },
+                  "activity": "${SendActivity_AdzUAs()}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "pollenReport.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "getPollenByZip",
+        "pattern": "(?i)pollen(\\s*)(?<zipcode>\\d\\d\\d\\d\\d)?"
+      }
+    ]
+  },
+  "id": "pollenReport"
+}

@@ -1,0 +1,26 @@
+[import](common.lg)
+
+# SendActivity_F8v9Ho()
+- Please set dialog.YOUTUBE_API_KEY property
+
+# SendActivity_clmhJq()
+- ${youtubeCard(dialog.youtubeItem.id.videoId, dialog.youtubeItem.snippet, dialog.youtubeItem.snippet.thumbnails.default)}
+
+# youtubeCard(id, snippet, thumbnail)
+[HeroCard
+    title = ${snippet.title}
+    text = ${snippet.description}
+    image = ${thumbnail.url}
+    buttons = ${openUrlCard("Watch on YouTube", concat("https://youtube.com/watch?v=", uriComponent(id)))}
+]
+
+# openUrlCard( title, url)
+[CardAction
+    Type = "openUrl"
+    Title = ${title}
+    Value = ${url}
+]
+# SendActivity_zl1wZq()
+- YouTube API returned no results for ${dialog.query}
+# SendActivity_4SdhnD()
+- YouTube API returned an error: ${dialog.youtubeResult.content.error.message}

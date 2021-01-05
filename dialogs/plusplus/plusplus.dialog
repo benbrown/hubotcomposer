@@ -68,11 +68,103 @@
               ]
             },
             {
-              "$kind": "Microsoft.SendActivity",
+              "$kind": "Microsoft.EmitEvent",
               "$designer": {
-                "id": "p6ebX5"
+                "id": "UjyhTL"
               },
-              "activity": "${SendActivity_p6ebX5()}"
+              "eventName": "=\"pointsChanged\"",
+              "bubbleEvent": false,
+              "eventValue": "={item: dialog.foreach.value, points: conversation.items[dialog.foreach.value]}"
+            }
+          ],
+          "itemsProperty": "$itemList"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnDialogEvent",
+      "$designer": {
+        "id": "yvx2RX",
+        "name": "pointsChanged"
+      },
+      "event": "pointsChanged",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "w45JB3"
+          },
+          "activity": "${SendActivity_w45JB3()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "AHTOCw",
+        "name": "minusminus"
+      },
+      "intent": "minusminus",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "XiAefc"
+          },
+          "property": "conversation.items",
+          "value": "=coalesce(conversation.items, {})"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "J6C0x6"
+          },
+          "property": "$itemList",
+          "value": "=turn.recognized.entities.item"
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "zTnAl1"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "Ah5pWB"
+              },
+              "condition": "=exists(conversation.items[dialog.foreach.value])",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "n3hf79"
+                  },
+                  "property": "conversation.items[dialog.foreach.value]",
+                  "value": "=int(conversation.items[dialog.foreach.value])-1"
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "TwDsfq"
+                  },
+                  "property": "conversation.items[dialog.foreach.value]",
+                  "value": "-1"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.EmitEvent",
+              "$designer": {
+                "id": "8X1NOV"
+              },
+              "eventName": "=\"pointsChanged\"",
+              "bubbleEvent": false,
+              "eventValue": "={item: dialog.foreach.value, points: conversation.items[dialog.foreach.value]}"
             }
           ],
           "itemsProperty": "$itemList"
@@ -87,6 +179,10 @@
       {
         "intent": "plusplus",
         "pattern": "(?i)((\\b)(?<item>\\w+)\\+\\+)+"
+      },
+      {
+        "intent": "minusminus",
+        "pattern": "(?i)((\\b)(?<item>\\w+)\\-\\-)+"
       }
     ]
   },

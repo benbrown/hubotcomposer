@@ -1,4 +1,4 @@
 [import](common.lg)
 
-# SendActivity_p6ebX5()
-- ${ dialog.foreach.value } now has ${ conversation.items[dialog.foreach.value] } points.
+# SendActivity_w45JB3()
+- ${ turn.dialogEvent.Value.item } now has ${ turn.dialogEvent.value.points} points!

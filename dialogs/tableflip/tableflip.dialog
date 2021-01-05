@@ -1,0 +1,40 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "6pCfg2",
+    "name": "tableflip",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "Dyuz5c",
+        "name": "flip-the-table"
+      },
+      "intent": "flip-the-table",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "nDtgcS"
+          },
+          "activity": "${SendActivity_nDtgcS()}"
+        }
+      ]
+    }
+  ],
+  "generator": "tableflip.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "flip-the-table",
+        "pattern": "(?i)(flip)(\\s+)?(?<thing>.*)?"
+      }
+    ]
+  },
+  "id": "tableflip"
+}

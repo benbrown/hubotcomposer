@@ -67,6 +67,78 @@
     {
       "$kind": "Microsoft.OnIntent",
       "$designer": {
+        "id": "qL6DK1",
+        "name": "youtubesearch"
+      },
+      "intent": "youtubesearch",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "8KX8gj"
+          },
+          "activityProcessed": false,
+          "dialog": "youtubesearch"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "T7jF3B",
+        "name": "businesscat"
+      },
+      "intent": "businesscat",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "70UCl0"
+          },
+          "activityProcessed": true,
+          "dialog": "businesscat"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "PDmgsk",
+        "name": "tableflippler"
+      },
+      "intent": "tableflippler",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "nXjY0o"
+          },
+          "activityProcessed": false,
+          "dialog": "tableflip"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "lUOsSc",
+        "name": "pollenCount"
+      },
+      "intent": "pollenCount",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "GrBHzx"
+          },
+          "activityProcessed": false,
+          "dialog": "pollenReport"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
         "id": "vXNeze",
         "name": "applause"
       },
@@ -92,6 +164,22 @@
       {
         "intent": "plusplus",
         "pattern": "(\\+\\+|\\-\\-)"
+      },
+      {
+        "intent": "youtubesearch",
+        "pattern": "(?:youtube|yt)\\s(?:me)?\\s(?<query>.*)"
+      },
+      {
+        "intent": "businesscat",
+        "pattern": "(action\\sitems?)|(adult\\sin\\sthe\\sroom)|(aha\\smoment)|(all\\shands\\son\\sdeck)|(alignment)|(at\\sthe\\send\\sof\\sthe\\sday)|(best\\s(of\\sbreed|practice))|(big(|ger)\\s(picture|data))|(bikeshedding)|(bleeding\\sedge)|(blue\\s(ocean\\sstrategy|sky\\sthinking))|(boil\\sthe\\socean)|(bottom\\sline)|(brain\\sdump)|(brainstorm(|ing))|(brand\\sreinforcement)|(bring\\sto\\sthe\\stable)|(burn\\splatform)|(burn\\srate)|(bus\\snumber)|(business\\svalue)|(business\\sdevelopment\\smanager)|((\\W|^)buy(\\s?|-)in(\\W|$))|(care\\sand\\sfeeding)|(change\\s(agent|management))|(circle\\s(back|the\\swagons))|(client(\\s|-)facing)|(come\\sto\\sjesus\\smoment)|(content\\smarketing)|(conversion\\sfunnel)|(core\\scompetenc(y|ies))|(core\\svalues)|(corporate\\svalues)|(customer\\scentric)|(deep\\sdive)|(deliverable)|(do\\smore\\swith\\sless)|((double|drill)(\\s|-|)down)|(drinking\\sthe\\skool(\\s|-)aid)|(ducks\\sin\\sa\\srow)|(dynamics)|(elevator\\spitch)|(emotional\\sbandwidth)|(empower(|ment))|(eye\\son\\sthe\\sball)|(exit\\sstrategy)|(face\\stalk(|ed))|(fast\\strack)|(game(\\s|)plan)|(gap\\sanalysis)|(get\\son\\sthe\\ssame\\spage)|(giving\\s110)|(go(|ing)\\s(forward|the\\sextra\\smile))|(guru)|(hammer(|ing)\\saway)|(hard\\sstop)|(have\\sthe\\sbandwidth)|(hit\\sthe\\sground\\srunning)|(hold\\sthe\\sfort)|(holistic\\sapproach)|(ideat(e|ion))|(in\\sthe\\sloop)|(informational)|(it\\sis\\swhat\\sit\\sis)|(juice\\sis\\sworth\\sthe\\ssqueeze)|(key\\stakeaway(|s))|(knowledge\\schampion(|s))|((l|)earnings)|(leverage)|(leav(e|ing)\\smoney\\son\\sthe\\stable)|(loop\\sme\\sin)|(lots\\sof\\smoving\\sparts)|(low\\shanging\\sfruit)|(make\\shay)|(manag(e|ing)\\s(expectations|perceptions))|(manifest)|(market\\sshare)|(move\\sthe\\s(goal\\sposts|needle|ball\\sdown\\sthe\\sfield))|(net(\\s|-)(net|new))|(north(\\s|-)south)|(offsite)|(open\\sthe\\skimono)|(on\\s(my|your)\\splate)|(on\\s(my|your)\\sradar)|(onboarding)|(out\\sof\\s(pocket|the\\sloop))|(out(side|\\sof)\\sthe\\sbox)|(out\\sof\\s(|the\\s)office)|(\\booo\\b)|(outsource)|(over\\sthe\\swall)|(overseas)|(own\\sthe\\smarket)|(paradigm)|(peel\\s(|back\\s)the\\sonion)|((\\W|^)per\\sse(\\W|$))|((pie|bar|line|scatter)\\s(chart|graph))|(pilot\\s(program|project))|((\\W|^)ping\\sme(\\W|$))|(in\\sthe\\spipeline)|(pig(|s)\\sand\\s(|the)\\schicken(|s))|(point\\sof\\scontact)|(price\\spoint)|(proactive)|(punch\\sa\\spuppy)|(punt)|(put\\sit\\son\\sthe\\stable)|(put\\sthis\\sone\\sto\\sbed)|(quick\\shit)|(reach\\sout)|(readout)|(results\\sdriven)|(return\\son\\sinvestment)|(robust)|(rock\\sstar)|(\\bROI\\b)|(\\bTCO\\b)|(rubber\\s(hits|meets)\\sthe\\sroad)|(share\\sof\\swallet)|(solutioning)|(strategic\\s.*?)|(streamline)|(swim\\slane)|(synerg(y|ize))|(take\\sit\\s(offline|to\\sthe\\snext\\slevel))|(take\\sownership)|(takeaway)|(task\\sforce(|s))|(team\\s(building|player))|(thought\\sleadership)|(tiger\\steams)|(topicjacking)|(total\\squality)|(touch(|ing)\\s(base|points))|(upmarket)|(value\\s(add|proposition))|(verb(iage|age))|(with\\supstream)|(with\\smanagement)"
+      },
+      {
+        "intent": "tableflippler",
+        "pattern": "flip"
+      },
+      {
+        "intent": "pollenCount",
+        "pattern": "pollen"
       },
       {
         "intent": "applause",
