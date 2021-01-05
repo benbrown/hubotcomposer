@@ -73,7 +73,7 @@
     "intents": [
       {
         "intent": "plusplus",
-        "pattern": "(?i)((\\b)(?<item>\\w+)\\+\\+)+"
+        "pattern": "(\\+\\+|\\-\\-)"
       }
     ]
   }
