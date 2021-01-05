@@ -63,6 +63,24 @@
           "dialog": "plusplus"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "qL6DK1",
+        "name": "youtubesearch"
+      },
+      "intent": "youtubesearch",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "8KX8gj"
+          },
+          "activityProcessed": false,
+          "dialog": "youtubesearch"
+        }
+      ]
     }
   ],
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
@@ -74,6 +92,10 @@
       {
         "intent": "plusplus",
         "pattern": "(\\+\\+|\\-\\-)"
+      },
+      {
+        "intent": "youtubesearch",
+        "pattern": "(?:youtube|yt)\\s(?:me)?\\s(?<query>.*)"
       }
     ]
   }
