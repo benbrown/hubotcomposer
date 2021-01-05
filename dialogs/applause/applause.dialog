@@ -1,0 +1,50 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "hNtNdm",
+    "name": "applause",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "applause",
+        "description": "",
+        "id": "sDLUcY"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "O8oaqJ"
+          },
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "m2MkZ9"
+              },
+              "activity": "${SendActivity_m2MkZ9()}"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "BHlXpQ"
+              },
+              "activity": "${SendActivity_BHlXpQ()}"
+            }
+          ],
+          "condition": "=isMatch(turn.activity.text, 'sarcastic')"
+        }
+      ]
+    }
+  ],
+  "generator": "applause.lg",
+  "recognizer": "applause.lu.qna",
+  "id": "applause"
+}
