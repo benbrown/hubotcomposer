@@ -1,0 +1,94 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "pQQZRW",
+    "name": "plusplus",
+    "description": "inspired by the hubot ++ feature"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "qtb3fT",
+        "name": "plusplus"
+      },
+      "intent": "plusplus",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "DIpNTb"
+          },
+          "property": "conversation.items",
+          "value": "=coalesce(conversation.items, {})"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "dMkQZP"
+          },
+          "property": "$itemList",
+          "value": "=turn.recognized.entities.item"
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "EJCDHE"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "Vi3CNG"
+              },
+              "condition": "=exists(conversation.items[dialog.foreach.value])",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "nZoeOc"
+                  },
+                  "property": "conversation.items[dialog.foreach.value]",
+                  "value": "=int(conversation.items[dialog.foreach.value])+1"
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "RtRjOm"
+                  },
+                  "property": "conversation.items[dialog.foreach.value]",
+                  "value": "1"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "p6ebX5"
+              },
+              "activity": "${SendActivity_p6ebX5()}"
+            }
+          ],
+          "itemsProperty": "$itemList"
+        }
+      ]
+    }
+  ],
+  "generator": "plusplus.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "plusplus",
+        "pattern": "(?i)((\\b)(?<item>\\w+)\\+\\+)+"
+      }
+    ]
+  },
+  "id": "plusplus"
+}

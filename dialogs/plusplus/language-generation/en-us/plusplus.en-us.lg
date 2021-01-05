@@ -1,0 +1,4 @@
+[import](common.lg)
+
+# SendActivity_p6ebX5()
+- ${ dialog.foreach.value } now has ${ conversation.items[dialog.foreach.value] } points.
