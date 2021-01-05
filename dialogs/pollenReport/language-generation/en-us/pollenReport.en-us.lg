@@ -1,0 +1,25 @@
+[import](common.lg)
+
+# SendActivity_PTs0sd()
+- get pollen count for ${ @zipcode }
+# SendActivity_BobMZx()
+- Sorry, the pollen report API responded with an error.
+# SendActivity_0FThO9()
+- ${ $forecast.Location.ZIP } Pollen: No forecast available."
+# SendActivity_AdzUAs()
+- ```${ $forecast.Location.DisplayLocation } Pollen: ${ $index } (${ formatIndexLabel($index) }) ${ join($triggers,', ',', and ') }.
+```
+
+# formatIndexLabel(index)
+- IF: ${ index <= 2.5 }
+ - Low
+- ELSEIF: ${ index <= 4.8 }
+ - Medium-Low
+- ELSEIF: ${ index <= 7.2 }
+- Medium
+- ELSEIF : ${ index <= 9.6 }
+ - Medium-High
+ - ELSEIF: ${ index < 12.0 }
+ - High
+ - ELSE:
+ - Death by Pollen

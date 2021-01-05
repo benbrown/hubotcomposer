@@ -117,6 +117,24 @@
           "dialog": "tableflip"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "lUOsSc",
+        "name": "pollenCount"
+      },
+      "intent": "pollenCount",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "GrBHzx"
+          },
+          "activityProcessed": false,
+          "dialog": "pollenReport"
+        }
+      ]
     }
   ],
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
@@ -140,6 +158,10 @@
       {
         "intent": "tableflippler",
         "pattern": "flip"
+      },
+      {
+        "intent": "pollenCount",
+        "pattern": "pollen"
       }
     ]
   }
