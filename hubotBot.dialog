@@ -135,6 +135,24 @@
           "dialog": "pollenReport"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "vXNeze",
+        "name": "applause"
+      },
+      "intent": "applause",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "vgNkLE"
+          },
+          "activityProcessed": false,
+          "dialog": "applause"
+        }
+      ]
     }
   ],
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
@@ -162,6 +180,10 @@
       {
         "intent": "pollenCount",
         "pattern": "pollen"
+      },
+      {
+        "intent": "applause",
+        "pattern": "\\b(sarcastic )?(applau(d|se)|bravo|(slow |sarcastic )?clap)\\b"
       }
     ]
   }
