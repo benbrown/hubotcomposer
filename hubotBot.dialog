@@ -135,6 +135,24 @@
           "dialog": "pollenReport"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "y1nrBQ",
+        "name": "shrug"
+      },
+      "intent": "shrug",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "6YcgPA"
+          },
+          "activityProcessed": false,
+          "dialog": "shrug"
+        }
+      ]
     }
   ],
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
@@ -162,6 +180,10 @@
       {
         "intent": "pollenCount",
         "pattern": "pollen"
+      },
+      {
+        "intent": "shrug",
+        "pattern": "shrug"
       }
     ]
   }
