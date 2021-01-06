@@ -8,19 +8,20 @@
 
 # youtubeCard(id, snippet, thumbnail)
 [HeroCard
-    title = ${snippet.title}
-    text = ${snippet.description}
+    subtitle = ${snippet.title}
     image = ${thumbnail.url}
     buttons = ${openUrlCard("Watch on YouTube", concat("https://youtube.com/watch?v=", uriComponent(id)))}
 ]
 
 # openUrlCard( title, url)
 [CardAction
-    Type = "openUrl"
+    Type = openUrl
     Title = ${title}
     Value = ${url}
 ]
+
 # SendActivity_zl1wZq()
 - YouTube API returned no results for ${dialog.query}
+
 # SendActivity_4SdhnD()
 - YouTube API returned an error: ${dialog.youtubeResult.content.error.message}

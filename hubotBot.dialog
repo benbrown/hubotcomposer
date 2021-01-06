@@ -134,7 +134,8 @@
           "activityProcessed": false,
           "dialog": "pollenReport"
         }
-      ]
+      ],
+      "priority": 1
     },
     {
       "$kind": "Microsoft.OnIntent",
@@ -152,6 +153,25 @@
           "activityProcessed": false,
           "dialog": "shrug"
         }
+      ],
+      "priority": 10
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "usuqpz",
+        "name": "applause"
+      },
+      "intent": "applause",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "wn5LMg"
+          },
+          "activityProcessed": false,
+          "dialog": "applause"
+        }
       ]
     }
   ],
@@ -163,7 +183,7 @@
     "intents": [
       {
         "intent": "plusplus",
-        "pattern": "(\\+\\+|\\-\\-)"
+        "pattern": "(\\+\\+|\\-\\-|plusplus)"
       },
       {
         "intent": "youtubesearch",
@@ -184,6 +204,10 @@
       {
         "intent": "shrug",
         "pattern": "shrug"
+      },
+      {
+        "intent": "applause",
+        "pattern": "\\b(sarcastic )?(applau(d|se)|bravo|(slow |sarcastic )?clap)\\b"
       }
     ]
   }

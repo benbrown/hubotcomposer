@@ -170,6 +170,148 @@
           "itemsProperty": "$itemList"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "Uka6BD",
+        "name": "leaderboard"
+      },
+      "intent": "leaderboard",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "a6gb3a"
+          },
+          "property": "conversation.items",
+          "value": "=coalesce(conversation.items, {})"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "XJOpYl"
+          },
+          "property": "$leaderboard",
+          "value": "=sortByDescending(foreach(conversation.items,item,{name:item.key, points: item.value}),'points')"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "23P9GP"
+          },
+          "condition": "=count($leaderboard)==0",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "61p4lh"
+              },
+              "activity": "${SendActivity_61p4lh()}"
+            },
+            {
+              "$kind": "Microsoft.EndDialog",
+              "$designer": {
+                "id": "7VMFF8"
+              }
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "8jrZ56"
+          },
+          "property": "$num",
+          "value": "=coalesce(@number, 10)"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "YKdLwZ"
+          },
+          "condition": "=(int($num) > count($leaderboard))",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "ok6oQM"
+              },
+              "property": "$num",
+              "value": "=count($leaderboard)"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "M4E1oh"
+          },
+          "activity": "${SendActivity_M4E1oh()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "DcXC9r",
+        "name": "reset"
+      },
+      "intent": "reset",
+      "actions": [
+        {
+          "$kind": "Microsoft.ConfirmInput",
+          "$designer": {
+            "id": "rcxkAg"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${ConfirmInput_Prompt_rcxkAg()}",
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "choiceOptions": {
+            "includeNumbers": true
+          },
+          "property": "$confirm"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "hWuvxP"
+          },
+          "condition": "=$confirm",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "wkdnrq"
+              },
+              "activity": "${SendActivity_wkdnrq()}"
+            },
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "yzVtS8"
+              },
+              "property": "conversation.items",
+              "value": "={}"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "vgR3rR"
+              },
+              "activity": "${SendActivity_vgR3rR()}"
+            }
+          ]
+        }
+      ]
     }
   ],
   "generator": "plusplus.lg",
@@ -183,6 +325,14 @@
       {
         "intent": "minusminus",
         "pattern": "(?i)((\\b)(?<item>\\w+)\\-\\-)+"
+      },
+      {
+        "intent": "leaderboard",
+        "pattern": "(i?)top(\\s*)(?<number>\\d+)?"
+      },
+      {
+        "intent": "reset",
+        "pattern": "reset"
       }
     ]
   },
