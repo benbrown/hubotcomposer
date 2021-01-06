@@ -191,6 +191,24 @@
           "dialog": "lmgtfy"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "FgW8aH",
+        "name": "bookmark"
+      },
+      "intent": "bookmark",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "RUVIUU"
+          },
+          "activityProcessed": false,
+          "dialog": "bookmark"
+        }
+      ]
     }
   ],
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
@@ -230,6 +248,10 @@
       {
         "intent": "lmgtfy",
         "pattern": "lmgtfy (?<query>.*)"
+      },
+      {
+        "intent": "bookmark",
+        "pattern": "bookmark .*"
       }
     ]
   }
