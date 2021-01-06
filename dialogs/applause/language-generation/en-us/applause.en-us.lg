@@ -36,10 +36,10 @@
 - http://i.imgur.com/Sx8iAS8.gif
 - http://i.imgur.com/5zKXz.gif-
 # SendActivity_m2MkZ9()
-[AnimationCard
-    media=${InsincereApplause()}
+[HeroCard
+    image=${InsincereApplause()}
 ]
 # SendActivity_BHlXpQ()
-[AnimationCard
-    media=${SincereApplause()}
+[HeroCard
+    image=${SincereApplause()}
 ]
