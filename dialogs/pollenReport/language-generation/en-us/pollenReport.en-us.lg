@@ -1,7 +1,5 @@
 [import](common.lg)
 
-# SendActivity_PTs0sd()
-- get pollen count for ${ @zipcode }
 # SendActivity_BobMZx()
 - Sorry, the pollen report API responded with an error.
 # SendActivity_0FThO9()
@@ -23,3 +21,13 @@
  - High
  - ELSE:
  - Death by Pollen
+# SendActivity_T83PYw()
+- That doesn't look like a valid zipcode.
+# NumberInput_Prompt_BYN1xN()
+- For what zipcode?
+# NumberInput_InvalidPrompt_BYN1xN()
+- This doesn't look like a zipcode. Please try again.
+# NumberInput_UnrecognizedPrompt_BYN1xN()
+- This doesn't look like a zipcode. Please try again.
+# NumberInput_DefaultValueResponse_BYN1xN()
+- Try again later. You can say `pollen report for 78704` for example.

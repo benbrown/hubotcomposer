@@ -17,19 +17,53 @@
       "intent": "getPollenByZip",
       "actions": [
         {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "PTs0sd"
-          },
-          "activity": "${SendActivity_PTs0sd()}"
-        },
-        {
           "$kind": "Microsoft.SetProperty",
           "$designer": {
             "id": "1nSxVV"
           },
           "property": "$zipcode",
           "value": "=@zipcode"
+        },
+        {
+          "$kind": "Microsoft.NumberInput",
+          "$designer": {
+            "id": "BYN1xN"
+          },
+          "defaultLocale": "en-us",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "prompt": "${NumberInput_Prompt_BYN1xN()}",
+          "unrecognizedPrompt": "${NumberInput_UnrecognizedPrompt_BYN1xN()}",
+          "invalidPrompt": "${NumberInput_InvalidPrompt_BYN1xN()}",
+          "defaultValueResponse": "${NumberInput_DefaultValueResponse_BYN1xN()}",
+          "property": "$zipcode",
+          "validations": [
+            "length(string(this.value)) == 5"
+          ]
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "chWgqg"
+          },
+          "condition": "=!isMatch(string($zipcode),'\\d{5}')",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "T83PYw"
+              },
+              "activity": "${SendActivity_T83PYw()}"
+            },
+            {
+              "$kind": "Microsoft.EndDialog",
+              "$designer": {
+                "id": "p6YCvt"
+              }
+            }
+          ]
         },
         {
           "$kind": "Microsoft.HttpRequest",
@@ -140,7 +174,7 @@
     "intents": [
       {
         "intent": "getPollenByZip",
-        "pattern": "(?i)pollen(\\s*)(?<zipcode>\\d\\d\\d\\d\\d)?"
+        "pattern": "(?i)pollen(.*?(?<zipcode>\\d\\d\\d\\d\\d))?"
       }
     ]
   },
