@@ -1,0 +1,76 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "oVceip",
+    "name": "Kanye",
+    "description": "Give Kanye quotes"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "id": "WEKm8G",
+        "name": "KanyeQuote"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "5rEtnw"
+          },
+          "activity": "${SendActivity_5rEtnw()}"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "XyE2nv"
+          },
+          "method": "GET",
+          "url": "https://api.kanye.rest",
+          "resultProperty": "dialog.res"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "ELtBL1"
+          },
+          "condition": "=(dialog.res.statusCode==200)",
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "Y6GTIH"
+              },
+              "activity": "${SendActivity_Y6GTIH()}"
+            }
+          ],
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "uW4PL7"
+              },
+              "property": "$KanyeQuote",
+              "value": "=dialog.res.content"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "FUDKhw"
+              },
+              "activity": "${SendActivity_FUDKhw()}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "Kanye.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
+  "id": "Kanye"
+}

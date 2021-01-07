@@ -1,0 +1,113 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "KY3HhR",
+    "name": "birthday",
+    "description": "Generate birthday statements"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "sDTLVJ",
+        "name": "birthdayquote"
+      },
+      "intent": "birthdayquote",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "eyzgPg"
+          },
+          "value": "=turn.recognized.entities.user[0]",
+          "property": "$user"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "C9BEZk"
+          },
+          "activity": "${SendActivity_C9BEZk()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "pGtF1O"
+          },
+          "activity": "${SendActivity_pGtF1O()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "shzIxd",
+        "name": "birthdaygreeting"
+      },
+      "intent": "birthdaygreeting",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "28uxNN"
+          },
+          "value": "=turn.recognized.entities.user[0]",
+          "property": "$user"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "2frV9y"
+          },
+          "activity": "${SendActivity_2frV9y()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "x0fusZ",
+        "name": "celebrate"
+      },
+      "intent": "celebrate",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "steC3E"
+          },
+          "value": "=turn.recognized.entities.user[0]",
+          "property": "$user"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "ocpbf8"
+          },
+          "activity": "${SendActivity_ocpbf8()}"
+        }
+      ]
+    }
+  ],
+  "generator": "birthday.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "birthdayquote",
+        "pattern": "(?:birthday quote for)\\s(?<user>.*)"
+      },
+      {
+        "intent": "birthdaygreeting",
+        "pattern": "(?:happy birthday to)\\s(?<user>.*)"
+      },
+      {
+        "intent": "celebrate",
+        "pattern": "(?:celebrate)\\s(?<user>.*)"
+      }
+    ]
+  },
+  "id": "birthday"
+}

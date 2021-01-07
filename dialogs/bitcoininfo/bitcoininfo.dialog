@@ -1,0 +1,156 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "NfhCgH",
+    "name": "bitcoininfo",
+    "description": "Get information on BitCoin"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "2NolqD",
+        "name": "price"
+      },
+      "intent": "price",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "OhIxHR"
+          },
+          "property": "$currency",
+          "value": "USD"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "tGR3hK"
+          },
+          "method": "GET",
+          "url": "https://api.coindesk.com/v1/bpi/currentprice/${$currency}.json",
+          "resultProperty": "dialog.res"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "tKzNJL"
+          },
+          "condition": "=(dialog.res.statusCode==200)",
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "ZwCpan"
+              },
+              "activity": "${SendActivity_ZwCpan()}"
+            }
+          ],
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "CM9SC5"
+              },
+              "property": "$price",
+              "value": "=dialog.res.content.bpi[$currency]"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "dVETql"
+              },
+              "activity": "${SendActivity_dVETql()}"
+            }
+          ]
+        }
+      ],
+      "priority": 1
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "7jrxij",
+        "name": "priceiin"
+      },
+      "intent": "priceiin",
+      "priority": 0,
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "QHcBQX"
+          },
+          "activity": "${SendActivity_QHcBQX()}"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "qX9gsQ"
+          },
+          "property": "$currency",
+          "value": "USD"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "Kgw8Gt"
+          },
+          "method": "GET",
+          "url": "https://api.coindesk.com/v1/bpi/currentprice/${$currency}.json",
+          "resultProperty": "dialog.res"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "91chCo"
+          },
+          "condition": "=(dialog.res.statusCode==200)",
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "XonRde"
+              },
+              "activity": "${SendActivity_XonRde()}"
+            }
+          ],
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "xZWSpH"
+              },
+              "property": "$price",
+              "value": "=dialog.res.content.bpi[$currency]"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "8VzpM3"
+              },
+              "activity": "${SendActivity_8VzpM3()}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "bitcoininfo.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "price",
+        "pattern": "price"
+      },
+      {
+        "intent": "priceiin",
+        "pattern": "(?i)price(.*?)in (?<query>[A-Z]{​​3}​​)"
+      }
+    ]
+  },
+  "id": "bitcoininfo"
+}

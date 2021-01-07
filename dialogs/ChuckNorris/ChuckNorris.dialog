@@ -1,0 +1,121 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "luubu1",
+    "name": "ChuckNorris",
+    "description": "Tells Chuck Norris facts"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "id": "4BnrBJ",
+        "name": "ChuckFact"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "FIfE8u"
+          },
+          "activity": "${SendActivity_FIfE8u()}"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "n2AP92"
+          },
+          "method": "GET",
+          "url": "https://api.chucknorris.io/jokes/random",
+          "resultProperty": "dialog.res"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "mXvvqS"
+          },
+          "condition": "=(dialog.res.statusCode==200)",
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "9gmjpu"
+              },
+              "activity": "${SendActivity_9gmjpu()}"
+            }
+          ],
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "HCNB8R"
+              },
+              "property": "$ChuckFact",
+              "value": "=dialog.res.content"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "3XQDx8"
+              },
+              "activity": "${SendActivity_3XQDx8()}"
+            },
+            {
+              "$kind": "Microsoft.ConfirmInput",
+              "$designer": {
+                "id": "0nMoZP"
+              },
+              "defaultLocale": "en-us",
+              "disabled": false,
+              "maxTurnCount": 3,
+              "alwaysPrompt": false,
+              "allowInterruptions": false,
+              "prompt": "${ConfirmInput_Prompt_0nMoZP()}",
+              "unrecognizedPrompt": "",
+              "invalidPrompt": "",
+              "defaultValueResponse": "",
+              "choiceOptions": {
+                "includeNumbers": true,
+                "inlineOrMore": ", or "
+              },
+              "property": "dialog.chuck"
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "oZIBzZ"
+              },
+              "actions": [
+                {
+                  "$kind": "Microsoft.RepeatDialog",
+                  "$designer": {
+                    "id": "GECwVb"
+                  },
+                  "activityProcessed": true
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "c0JANN"
+                  },
+                  "activity": "${SendActivity_c0JANN()}"
+                }
+              ],
+              "condition": "dialog.chuck == true"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "ChuckNorris.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
+  "id": "ChuckNorris"
+}

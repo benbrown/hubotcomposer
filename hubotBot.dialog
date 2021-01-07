@@ -227,6 +227,96 @@
           "dialog": "stonks"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "TRPB7O",
+        "name": "BitCoin"
+      },
+      "intent": "BitCoin",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "NIlcnb"
+          },
+          "activityProcessed": false,
+          "dialog": "bitcoininfo"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "sN8NsI",
+        "name": "birthday"
+      },
+      "intent": "birthday",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "7Gbde3"
+          },
+          "activityProcessed": false,
+          "dialog": "birthday"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "7uo2tH",
+        "name": "celebrate"
+      },
+      "intent": "celebrate",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "CxyvKQ"
+          },
+          "activityProcessed": false,
+          "dialog": "birthday"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "qh59VP",
+        "name": "ChuckFact"
+      },
+      "intent": "ChuckFact",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "AwlUjz"
+          },
+          "activityProcessed": false,
+          "dialog": "ChuckNorris"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "8l238e",
+        "name": "Kanye"
+      },
+      "intent": "Kanye",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "tlOaHd"
+          },
+          "activityProcessed": false,
+          "dialog": "Kanye"
+        }
+      ]
     }
   ],
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
@@ -254,6 +344,26 @@
       {
         "intent": "pollenCount",
         "pattern": "pollen"
+      },
+      {
+        "intent": "BitCoin",
+        "pattern": "bitcoin"
+      },
+      {
+        "intent": "birthday",
+        "pattern": "birthday"
+      },
+      {
+        "intent": "celebrate",
+        "pattern": "celebrate"
+      },
+      {
+        "intent": "ChuckFact",
+        "pattern": "Chuck"
+      },
+      {
+        "intent": "Kanye",
+        "pattern": "Kanye"
       },
       {
         "intent": "shrug",
