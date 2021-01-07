@@ -185,13 +185,10 @@
         {
           "$kind": "Microsoft.BeginDialog",
           "$designer": {
-            "$kind": "Microsoft.OnIntent",
-            "$designer": {
-              "id": "YvGGRq"
-            },
-            "activityProcessed": false,
-            "dialog": "dice"
-          }
+            "id": "YvGGRq"
+          },
+          "activityProcessed": false,
+          "dialog": "dice"
         }
       ]
     },
