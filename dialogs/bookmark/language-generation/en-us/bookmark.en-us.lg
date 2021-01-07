@@ -12,7 +12,10 @@
 - I don't understand this request. Try `bookmark help` for a list of commands.
 # SendActivity_J5hgA8()
 - ```Try one of the following commands:
+
 > bookmark add https://microsoft.com as Microsoft
+>
 > bookmark find Microsoft
+>
 > bookmark list
 ```
