@@ -173,6 +173,24 @@
           "dialog": "applause"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "n9BEt6",
+        "name": "lmgtfy"
+      },
+      "intent": "lmgtfy",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "efCUXe"
+          },
+          "activityProcessed": false,
+          "dialog": "lmgtfy"
+        }
+      ]
     }
   ],
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
@@ -208,6 +226,10 @@
       {
         "intent": "applause",
         "pattern": "\\b(sarcastic )?(applau(d|se)|bravo|(slow |sarcastic )?clap)\\b"
+      },
+      {
+        "intent": "lmgtfy",
+        "pattern": "lmgtfy (?<query>.*)"
       }
     ]
   }

@@ -1,0 +1,4 @@
+[import](common.lg)
+
+# SendActivity_phhW4d()
+- ${concat("https://lmgtfy.com/?q=", uriComponent(dialog.query))}
