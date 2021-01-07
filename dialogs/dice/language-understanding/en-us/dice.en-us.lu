@@ -1,0 +1,3 @@
+
+# rollDice
+-roll (die|one|dice|((<numdice>\d+)d(<dicesize>\d+)))

@@ -1,0 +1,136 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "H9H9M5",
+    "name": "dice",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "BDHg2S",
+        "name": "rollDice"
+      },
+      "intent": "rollDice",
+      "actions": [
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "pqU5nL"
+          },
+          "condition": "=isMatch(turn.activity.text, '(die|one|dice)')",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "8XMgeL"
+              },
+              "condition": "=isMatch(turn.activity.text, 'dice')",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SetProperties",
+                  "$designer": {
+                    "id": "kLXpVs"
+                  },
+                  "assignments": [
+                    {
+                      "property": "dialog.numdice",
+                      "value": 2
+                    },
+                    {
+                      "property": "dialog.dicesides",
+                      "value": 6
+                    }
+                  ]
+                }
+              ],
+              "elseActions": [
+                {
+                  "$kind": "Microsoft.SetProperties",
+                  "$designer": {
+                    "id": "M09F2m"
+                  },
+                  "assignments": [
+                    {
+                      "property": "dialog.numdice",
+                      "value": 1
+                    },
+                    {
+                      "property": "dialog.dicesides",
+                      "value": 6
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SetProperties",
+              "$designer": {
+                "id": "klifph"
+              },
+              "assignments": [
+                {
+                  "property": "dialog.numdice",
+                  "value": "=int(@numdice)"
+                },
+                {
+                  "property": "dialog.dicesides",
+                  "value": "=int(@dicesides)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "MBUNdZ"
+          },
+          "condition": "=dialog.numdice > 0 && dialog.dicesides > 0",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "zDgjFt"
+              },
+              "property": "dialog.result",
+              "value": "=sum(foreach(range(1, dialog.numdice), x, int(rand(1, dialog.dicesides + 1))))"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "Jv6tEb"
+              },
+              "activity": "${SendActivity_Jv6tEb()}"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "fCcU07"
+              },
+              "activity": "${SendActivity_fCcU07()}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "dice.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "rollDice",
+        "pattern": "roll (die|one|dice|((?<numdice>\\d+)d(?<dicesides>\\d+)))"
+      }
+    ]
+  },
+  "id": "dice"
+}
