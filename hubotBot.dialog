@@ -209,6 +209,24 @@
           "dialog": "bookmark"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "NyiykX",
+        "name": "stonks"
+      },
+      "intent": "stonks",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "1bnCDT"
+          },
+          "activityProcessed": false,
+          "dialog": "stonks"
+        }
+      ]
     }
   ],
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
@@ -252,6 +270,10 @@
       {
         "intent": "bookmark",
         "pattern": "bookmark .*"
+      },
+      {
+        "intent": "stonks",
+        "pattern": "stonks .*"
       }
     ]
   }
