@@ -1,0 +1,8 @@
+[import](common.lg)
+
+# SendActivity_HQvR8D()
+- Rolled ${dialog.result}
+# SendActivity_Jv6tEb()
+- Rolled ${dialog.result} on ${dialog.numdice} ${dialog.dicesides}-sided dice.
+# SendActivity_fCcU07()
+- Didn't roll any dice

@@ -177,6 +177,27 @@
     {
       "$kind": "Microsoft.OnIntent",
       "$designer": {
+        "id": "VZDiWR",
+        "name": "dice"
+      },
+      "intent": "dice",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "$kind": "Microsoft.OnIntent",
+            "$designer": {
+              "id": "YvGGRq"
+            },
+            "activityProcessed": false,
+            "dialog": "dice"
+          }
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
         "id": "n9BEt6",
         "name": "lmgtfy"
       },
@@ -384,6 +405,10 @@
       {
         "intent": "stonks",
         "pattern": "stonks .*"
+      },
+      {
+        "intent": "dice",
+        "pattern": "roll"
       }
     ]
   }
