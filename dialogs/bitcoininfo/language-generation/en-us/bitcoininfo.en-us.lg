@@ -1,0 +1,18 @@
+[import](common.lg)
+
+# SendActivity_P7HGpN()
+- You got the price in tree
+# TextInput_Prompt_xtMtLp()
+-
+# SendActivity_6EFQYH()
+- price in intent recog
+# SendActivity_QHcBQX()
+- In price in
+# SendActivity_8VzpM3()
+- The current price of BitCoin is ${$price.rate} ${$currency}.
+# SendActivity_XonRde()
+- Coindesk did not respond to the request.
+# SendActivity_dVETql()
+- The current price of BitCoin is ${$price.rate} ${$currency}.
+# SendActivity_ZwCpan()
+- Coindesk did not respond to the request.
