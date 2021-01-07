@@ -134,6 +134,98 @@
           "activityProcessed": false,
           "dialog": "pollenReport"
         }
+      ],
+      "priority": 1
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "y1nrBQ",
+        "name": "shrug"
+      },
+      "intent": "shrug",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "6YcgPA"
+          },
+          "activityProcessed": false,
+          "dialog": "shrug"
+        }
+      ],
+      "priority": 10
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "usuqpz",
+        "name": "applause"
+      },
+      "intent": "applause",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "wn5LMg"
+          },
+          "activityProcessed": false,
+          "dialog": "applause"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "n9BEt6",
+        "name": "lmgtfy"
+      },
+      "intent": "lmgtfy",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "efCUXe"
+          },
+          "activityProcessed": false,
+          "dialog": "lmgtfy"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "FgW8aH",
+        "name": "bookmark"
+      },
+      "intent": "bookmark",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "RUVIUU"
+          },
+          "activityProcessed": false,
+          "dialog": "bookmark"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "NyiykX",
+        "name": "stonks"
+      },
+      "intent": "stonks",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "1bnCDT"
+          },
+          "activityProcessed": false,
+          "dialog": "stonks"
+        }
       ]
     },
     {
@@ -235,7 +327,7 @@
     "intents": [
       {
         "intent": "plusplus",
-        "pattern": "(\\+\\+|\\-\\-)"
+        "pattern": "(\\+\\+|\\-\\-|plusplus)"
       },
       {
         "intent": "youtubesearch",
@@ -272,6 +364,26 @@
       {
         "intent": "Kanye",
         "pattern": "Kanye"
+      },
+      {
+        "intent": "shrug",
+        "pattern": "shrug"
+      },
+      {
+        "intent": "applause",
+        "pattern": "\\b(sarcastic )?(applau(d|se)|bravo|(slow |sarcastic )?clap)\\b"
+      },
+      {
+        "intent": "lmgtfy",
+        "pattern": "lmgtfy (?<query>.*)"
+      },
+      {
+        "intent": "bookmark",
+        "pattern": "bookmark .*"
+      },
+      {
+        "intent": "stonks",
+        "pattern": "stonks .*"
       }
     ]
   }

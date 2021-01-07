@@ -1,0 +1,40 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "BDYCtd",
+    "name": "shrug",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "MvUfTe",
+        "name": "shrug"
+      },
+      "intent": "shrug",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "MyDZvT"
+          },
+          "activity": "${SendActivity_MyDZvT()}"
+        }
+      ]
+    }
+  ],
+  "generator": "shrug.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "shrug",
+        "pattern": "(?i)shrug(\\s+)?(?<reason>.*)?"
+      }
+    ]
+  },
+  "id": "shrug"
+}

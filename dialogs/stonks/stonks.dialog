@@ -1,0 +1,127 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "gA25T8",
+    "name": "stonks",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "jvIPJD",
+        "name": "find"
+      },
+      "intent": "find",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "ouINMq"
+          },
+          "property": "dialog.ALPHAVANTAGE_API_KEY",
+          "value": "=settings.ALPHAVANTAGE_API_KEY"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "pjM1Xc"
+          },
+          "property": "dialog.query",
+          "value": "=turn.recognized.entities.query[0]"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "2edwU7"
+          },
+          "method": "GET",
+          "url": "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&apikey=${uriComponent(dialog.ALPHAVANTAGE_API_KEY)}&symbol=${uriComponent(toUpper(dialog.query))}",
+          "resultProperty": "dialog.httpResult",
+          "contentType": "application/json",
+          "responseType": "json"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "o3Voq4"
+          },
+          "property": "dialog.content",
+          "value": "=dialog.httpResult.content"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "Vzxrgy"
+          },
+          "condition": "=!exists(dialog.content[\"Global Quote\"])",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "PUTqr3"
+              },
+              "activity": "${SendActivity_PUTqr3()}"
+            },
+            {
+              "$kind": "Microsoft.EndDialog",
+              "$designer": {
+                "id": "7nI0SM"
+              }
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "jHWY9w"
+          },
+          "property": "dialog.globalQuote",
+          "value": "=dialog.content[\"Global Quote\"]"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "eBbi4e"
+          },
+          "condition": "=!exists(dialog.globalQuote[\"01. symbol\"])",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "2MujNo"
+              },
+              "activity": "${SendActivity_2MujNo()}"
+            },
+            {
+              "$kind": "Microsoft.EndDialog",
+              "$designer": {
+                "id": "dYThsZ"
+              }
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "BzpS1L"
+          },
+          "activity": "${SendActivity_BzpS1L()}"
+        }
+      ]
+    }
+  ],
+  "generator": "stonks.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "find",
+        "pattern": "stonks (?<query>[^ ]+)"
+      }
+    ]
+  },
+  "id": "stonks"
+}

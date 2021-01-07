@@ -1,0 +1,25 @@
+[import](common.lg)
+
+# SendActivity_BzpS1L()
+- ```Stock data for ${dialog.globalQuote["01. symbol"]}:
+
+> Open: ${dialog.globalQuote["02. open"]}
+>
+> High: ${dialog.globalQuote["03. high"]}
+>
+> Low: ${dialog.globalQuote["04. low"]}
+>
+> Price: ${dialog.globalQuote["05. price"]}
+>
+> Volume: ${dialog.globalQuote["06. volume"]}
+>
+> Previous Close: ${dialog.globalQuote["08. previous close"]}
+>
+> Change: ${dialog.globalQuote["09. change"]}
+>
+> Percent Change: ${dialog.globalQuote["10. change percent"]}
+```
+# SendActivity_PUTqr3()
+- Alphavantage API returned an error: ${dialog.content["Information"]}
+# SendActivity_2MujNo()
+- Unable to locate stock data for ${dialog.query}.

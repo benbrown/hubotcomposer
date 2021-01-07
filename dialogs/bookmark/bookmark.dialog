@@ -1,0 +1,192 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "FwWPYy",
+    "name": "bookmark",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "DdVYth",
+        "name": "add"
+      },
+      "intent": "add",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "tZ6Jqi"
+          },
+          "value": "=coalesce(conversation.bookmarks, {})",
+          "property": "conversation.bookmarks"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "wok8OP"
+          },
+          "property": "dialog.url",
+          "value": "=turn.recognized.entities.url[0]"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "LBo2TI"
+          },
+          "property": "dialog.description",
+          "value": "=turn.recognized.entities.description[0]"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "4qznoH"
+          },
+          "value": "=dialog.url",
+          "property": "conversation.bookmarks[dialog.description]"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "ib1zo4"
+          },
+          "activity": "${SendActivity_ib1zo4()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "0fwhL1",
+        "name": "list"
+      },
+      "intent": "list",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "1a6NRj"
+          },
+          "value": "=coalesce(conversation.bookmarks, {})",
+          "property": "conversation.bookmarks"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "0OSYDH"
+          },
+          "activity": "${SendActivity_0OSYDH()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "Jh9cDt",
+        "name": "find"
+      },
+      "intent": "find",
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "c5nBjg"
+          },
+          "value": "=coalesce(conversation.bookmarks, {})",
+          "property": "conversation.bookmarks"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "2ad5p4"
+          },
+          "property": "dialog.description",
+          "value": "=turn.recognized.entities.description[0]"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "JPPjl0"
+          },
+          "condition": "=exists(conversation.bookmarks[dialog.description])",
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "WwY3mL"
+              },
+              "activity": "${SendActivity_WwY3mL()}"
+            }
+          ],
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "qGrFhP"
+              },
+              "activity": "${SendActivity_qGrFhP()}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnUnknownIntent",
+      "$designer": {
+        "id": "3kn1af"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "ilGaj5"
+          },
+          "activity": "${SendActivity_ilGaj5()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "Wgz5mI",
+        "name": "help"
+      },
+      "intent": "help",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "J5hgA8"
+          },
+          "activity": "${SendActivity_J5hgA8()}"
+        }
+      ]
+    }
+  ],
+  "generator": "bookmark.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "add",
+        "pattern": "bookmark add (?<url>[^ ]+) as (?<description>[^ ]+)"
+      },
+      {
+        "intent": "list",
+        "pattern": "bookmark list"
+      },
+      {
+        "intent": "find",
+        "pattern": "bookmark find (?<description>[^ ]+)"
+      },
+      {
+        "intent": "help",
+        "pattern": "bookmark help"
+      }
+    ]
+  },
+  "id": "bookmark"
+}

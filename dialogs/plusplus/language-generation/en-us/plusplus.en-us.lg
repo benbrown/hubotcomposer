@@ -1,4 +1,32 @@
 [import](common.lg)
 
 # SendActivity_w45JB3()
-- ${ turn.dialogEvent.Value.item } now has ${ turn.dialogEvent.value.points} points!
+- ${ turn.dialogEvent.Value.item } now has ${ turn.dialogEvent.value.points} ${ pluralize(player.points,'point','points') }!
+# SendActivity_M4E1oh()
+- ${ renderLeaderboard(subArray($leaderboard, 0, $num)) }
+
+# renderLeaderboard(leaderboard)
+- ```*Leaderboard*:
+---
+${ join(foreach(leaderboard,player, leaderboardRow(player)),"\n") }
+```
+
+# leaderboardRow(player)
+- * ${ player.name } has ${ player.points } ${ pluralize(player.points,'point','points') }.
+
+# SendActivity_61p4lh()
+- The leaderboard is empty. Assign something a point by saying `[thing]++`
+
+# pluralize(num,singular,plural)
+- IF: ${ num==1 }
+  - ${ singular }
+- ELSE:
+  - ${ plural }
+
+
+# ConfirmInput_Prompt_rcxkAg()
+- Reset the leaderboard for this channel?
+# SendActivity_wkdnrq()
+- Reset!
+# SendActivity_vgR3rR()
+- OK.

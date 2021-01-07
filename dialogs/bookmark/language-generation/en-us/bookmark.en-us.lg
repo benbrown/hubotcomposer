@@ -1,0 +1,21 @@
+[import](common.lg)
+
+# SendActivity_ib1zo4()
+- Got it!
+# SendActivity_WwY3mL()
+- I didn't find a bookmark for ${dialog.description}
+# SendActivity_qGrFhP()
+- ${conversation.bookmarks[dialog.description]}
+# SendActivity_0OSYDH()
+- ${join(foreach(indicesAndValues(conversation.bookmarks), item, concat(item.index, ": ", item.value)), '\n\n')}
+# SendActivity_ilGaj5()
+- I don't understand this request. Try `bookmark help` for a list of commands.
+# SendActivity_J5hgA8()
+- ```Try one of the following commands:
+
+> bookmark add https://microsoft.com as Microsoft
+>
+> bookmark find Microsoft
+>
+> bookmark list
+```

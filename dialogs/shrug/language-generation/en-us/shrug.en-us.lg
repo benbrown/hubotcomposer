@@ -1,0 +1,7 @@
+[import](common.lg)
+
+# SendActivity_MyDZvT()
+- IF: ${ exists(@reason) }
+ - ¯\\\\_(ツ)\_/¯ ${ @reason }
+- ELSE:
+ -  ¯\\\\_(ツ)\_/¯
